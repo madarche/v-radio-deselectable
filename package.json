@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "author": "Marc-Aurèle DARCHE (https://github.com/madarche)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madarche/v-radio-deselectable"
+  },
   "main": "./src/index.js",
   "scripts": {
     "demo:prepare": "mkdir -p demo/bundle",
