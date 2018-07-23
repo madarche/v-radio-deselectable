@@ -1,0 +1,58 @@
+{
+  "name": "v-radio-deselectable",
+  "version": "1.0.0",
+  "author": "Marc-Aurèle DARCHE (https://github.com/madarche)",
+  "license": "MIT",
+  "main": "./src/index.js",
+  "scripts": {
+    "demo:prepare": "mkdir -p demo/bundle",
+    "demo:clean": "rm -rf demo/bundle",
+    "demo:build": "npm run demo:build:js && npm run demo:build:css",
+    "demo:build:js": "npm run demo:prepare && browserify -g envify -e demo/main.js > demo/bundle/bundle.js",
+    "demo:build:css": "npm run demo:prepare && lessc demo/app.less | postcss -u autoprefixer -u pixrem -c postcss.json | cleancss | tee demo/bundle/bundle.css > /dev/null",
+    "demo:build:watch": "parallelshell 'npm run demo:build:js:watch' 'npm run demo:build:css:watch'",
+    "demo:build:js:watch": "npm run demo:prepare && watchify -v -p browserify-hmr -e demo/main.js -o demo/bundle/bundle.js",
+    "demo:build:css:watch": "watch 'npm run demo:build:css' src/ demo/ --ignoreDirectoryPattern=/bundle/",
+    "lint": "eslint . --ext .js,.vue",
+    "lint:fix": "eslint --fix . --ext .js,.vue"
+  },
+  "peerDependecies": {
+    "vuetify": "1.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-runtime": "6.26.0",
+    "babelify": "8.0.0",
+    "browserify": "14.5.0",
+    "browserify-hmr": "0.3.6",
+    "browserify-shim": "3.8.14",
+    "clean-css-cli": "4.1.11",
+    "envify": "4.1.0",
+    "es6-promise": "4.2.2",
+    "eslint": "4.19.1",
+    "eslint-config-usecases": "1.3.0",
+    "eslint-plugin-vue": "4.5.0",
+    "less": "3.0.4",
+    "nsp": "3.1.0",
+    "parallelshell": "3.0.2",
+    "pixrem": "4.0.1",
+    "postcss": "6.0.14",
+    "postcss-cli": "4.1.1",
+    "uglify-js": "3.2.2",
+    "vue": "2.5.13",
+    "vue-template-compiler": "2.5.13",
+    "vueify": "9.4.1",
+    "vuetify": "1.1.1",
+    "watch": "1.0.2",
+    "watchify": "3.9.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "vueify"
+    ]
+  }
+}
