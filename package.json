@@ -17,11 +17,13 @@
     "demo:build:watch": "parallelshell 'npm run demo:build:js:watch' 'npm run demo:build:css:watch'",
     "demo:build:js:watch": "npm run demo:prepare && watchify -v -p browserify-hmr -e demo/main.js -o demo/bundle/bundle.js",
     "demo:build:css:watch": "watch 'npm run demo:build:css' src/ demo/ --ignoreDirectoryPattern=/bundle/",
+    "test": "npm run lint",
+    "test:ci": "npm run lint",
     "lint": "eslint . --ext .js,.vue",
     "lint:fix": "eslint --fix . --ext .js,.vue"
   },
   "peerDependecies": {
-    "vuetify": "1.1.1"
+    "vuetify": "1.x"
   },
   "devDependencies": {
     "babel-core": "6.26.0",
